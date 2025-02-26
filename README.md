@@ -4,33 +4,45 @@ is an example of building a swagger-enabled Flask server.
 
 This example uses the [Connexion](https://github.com/zalando/connexion) library on top of Flask.
 
-Currently (on the 26th of February 2025) it is a mock server, which takes only healthcheck request. It has two responses for it: 200 and 500. It works like this: for the first request it returns 500, for the second 200, for the third 500, for the fourth 200 and so on.
+Currently (on the 26th of February 2025) it is a mock server, which takes only healthcheck request. It provides two responses: `200` and `500`. For the first request it returns `500`, for the second `200`, for the third `500`, for the fourth `200` and so on.
 
 # Requirements
-We work with the latest Python version 3.12. Other versions haven't been tested
+We work with the latest Python version 3.12. Other versions haven't been tested.
 
 # Docker integration
-This repository contains .github/workflows/main.yaml file with a workflow. Each time new code is pushed to the repository, this workflow runs automatically. It builds a docker image with the server and pushes it to dockerhub ilia008/project_interface. Inner (inside the container) port the server listens to is specified in docker-file and is 8080.
+This repository contains `.github/workflows/main.yaml` file with a workflow. Each time new code is pushed to the repository, this workflow runs automatically. It builds a docker image with the server and pushes it to dockerhub `ilia008/project_interface`. `inner` (inside the container) port the server listens to is specified in docker-file and is 8080.
 
-# Cubernetes integration
-The image was deployed at kubernetes microk8s. microk8s was installed at Windows Subsystem for Linux (WSL) (Ubuntu version) at Windows 11 Home. In order to deploy the server at microk8s the following commands were run in WSL command line:
-1) sudo apt update  
-   sudo apt install snapd  
-   sudo snap install microk8s --classic  
-   These command install microk8s  
-2) microk8s start  
-   This command starts microk8s  
-   microk8s status  
-   Optinal: check microk8s status: check that it is really running  
-3) microk8s kubectl run inter --image=ilia008/project_interface  
-   Deploy the Docker image at the kubernetes  
-   Inter is pod name. You can choose a name you like.  
-   microk8s kubectl get pods  
-   Optinal: check, that inter pod has been really created.  
-4) microk8s kubectl expose pod inter --type=NodePort --port=80 --target-port=8080  
-   Expose the pod interface to the world outside of kubernetes cluster.  
-   microk8s kubectl describe service inter  
-   This command retrieves information about inter (or your name) service. Look for row like "NodePort: 30103". This is port at which the service is available.  
-5) firefox  
-   This command starts firefox browser (must be installed beforehand). In address string type http://127.0.0.1:NodePort/uva-d89/Project_Web_Interface/1.0.0/ui/.  
-   The service will be available at this address.  
+# Kubernetes integration
+The image was deployed at kubernetes microk8s.
+Microk8s was installed at Windows Subsystem for Linux (WSL) (Ubuntu version) at Windows 11 Home. In order to deploy the server at microk8s the following commands were run in WSL command line:
+
+1) 
+```sh
+sudo apt update  
+sudo apt install snapd  
+sudo snap install microk8s --classic  
+These command install microk8s
+``` 
+2)
+```sh
+microk8s start  
+This command starts microk8s  
+microk8s status  
+# Optional: check microk8s status: check that it is really running.
+```
+3) 
+```sh
+microk8s kubectl run inter --image=ilia008/project_interface  
+Deploy the Docker image at the kubernetes  
+Inter is pod name. You can choose a name you like.  
+microk8s kubectl get pods
+# Optional: check, that `inter` pod has been really created.  
+```  
+4)
+```sh
+microk8s kubectl expose pod inter --type=NodePort --port=80 --target-port=8080  
+Expose the pod interface to the world outside of kubernetes cluster.  
+# This command retrieves information about inter (or your name) service. Look for row like "NodePort: 30103". This is port at which the service is available.  
+microk8s kubectl describe service inter  
+```
+5) Address `http://127.0.0.1:NodePort/uva-d89/Project_Web_Interface/1.0.0/ui/` should be available.
