@@ -22,15 +22,21 @@ sudo apt update
 sudo apt install snapd  
 sudo snap install microk8s --classic  
 # These command install microk8s
-``` 
-2)
+```
+2) 
+```sh
+echo 'export PATH=$PATH:/snap/bin' >> ~/.bashrc
+source ~/.bashrc  
+# These commands add microk8s to PATH variable
+```
+3)
 ```sh
 microk8s start  
 # This command starts microk8s  
 microk8s status  
 # Optional: check microk8s status: check that it is really running.
 ```
-3) 
+4) 
 ```sh
 microk8s kubectl run inter --image=ilia008/project_interface  
 # Deploy the Docker image at the kubernetes  
@@ -38,11 +44,11 @@ microk8s kubectl run inter --image=ilia008/project_interface
 microk8s kubectl get pods
 # Optional: check, that `inter` pod has been really created.  
 ```  
-4)
+5)
 ```sh
 microk8s kubectl expose pod inter --type=NodePort --port=80 --target-port=8080  
 # Expose the pod interface to the world outside of kubernetes cluster.  
 # This command retrieves information about inter (or your name) service. Look for row like "NodePort: 30103". This is port at which the service is available.  
 microk8s kubectl describe service inter  
 ```
-5) Address `http://127.0.0.1:NodePort/uva-d89/Project_Web_Interface/1.0.0/ui/` should be available.
+6) Address `http://127.0.0.1:NodePort/uva-d89/Project_Web_Interface/1.0.0/ui/` should be available.
