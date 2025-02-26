@@ -21,27 +21,27 @@ Microk8s was installed at Windows Subsystem for Linux (WSL) (Ubuntu version) at 
 sudo apt update  
 sudo apt install snapd  
 sudo snap install microk8s --classic  
-These command install microk8s
+# These command install microk8s
 ``` 
 2)
 ```sh
 microk8s start  
-This command starts microk8s  
+# This command starts microk8s  
 microk8s status  
 # Optional: check microk8s status: check that it is really running.
 ```
 3) 
 ```sh
 microk8s kubectl run inter --image=ilia008/project_interface  
-Deploy the Docker image at the kubernetes  
-Inter is pod name. You can choose a name you like.  
+# Deploy the Docker image at the kubernetes  
+# Inter is pod name. You can choose a name you like.  
 microk8s kubectl get pods
 # Optional: check, that `inter` pod has been really created.  
 ```  
 4)
 ```sh
 microk8s kubectl expose pod inter --type=NodePort --port=80 --target-port=8080  
-Expose the pod interface to the world outside of kubernetes cluster.  
+# Expose the pod interface to the world outside of kubernetes cluster.  
 # This command retrieves information about inter (or your name) service. Look for row like "NodePort: 30103". This is port at which the service is available.  
 microk8s kubectl describe service inter  
 ```
