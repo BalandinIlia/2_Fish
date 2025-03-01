@@ -37,10 +37,22 @@ jobs:
     - name: exper
       run : |
           sudo apt update
+          
+    - name: exper
+      run : |
+          sudo apt install unzip curl -y
 
     - name: exper
       run : |
-          sudo apt install awscli -y
+          curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+    - name: exper
+      run : |
+          unzip awscliv2.zip
+
+    - name: exper
+      run : |
+          sudo ./aws/install
 
     - name: exper
       run : |
