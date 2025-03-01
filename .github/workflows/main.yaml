@@ -33,3 +33,19 @@ jobs:
     - name: Push image to docker hub Container Registry
       run: | 
           docker push ilia008/project_interface
+
+    - name: exper
+      run : |
+          sudo apt update
+
+    - name: exper
+      run : |
+          sudo apt install awscli -y
+
+    - name: exper
+      run : |
+          aws --version
+
+    - name: exper
+      run : |
+          aws configure
