@@ -14,10 +14,10 @@ jobs:
     
     - name: Build docker
       run: |
-        docker build . -t ilia008/project_interface
+        docker build . -t tag1
     - name: run docker
       run: |
-        docker run -d -p 8080:8080 ilia008/project_interface:latest && \
+        docker run -d -p 8080:8080 tag1 && \
           docker ps && sleep 5
 
     - name: Login to Container Registry
