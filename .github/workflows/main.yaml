@@ -26,6 +26,10 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
+    - name: Tag image
+      run: | 
+          docker tag tag1 ilia008/project_interface
+  
     - name: Push image to docker hub Container Registry
       run: | 
           docker push ilia008/project_interface
