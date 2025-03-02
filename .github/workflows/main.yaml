@@ -41,7 +41,7 @@ jobs:
     - name: AWS Login
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-access-key-id: ASIAUSJEUXJQZAJLXGUN
+        aws-secret-access-key: w9M+ZwTE431z+QL1UUzLhQ+YV1zFnlq5Vn7ikp+A
         aws-region: eu-north-1
         audience: sts.amazonaws.com
