@@ -40,10 +40,13 @@ jobs:
 
     - name: conf
       run: |
-        aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID
-        aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
+        aws configure set aws_access_key_id $A
+        aws configure set aws_secret_access_key $AA
         aws configure set region eu-north-1
         aws configure set output json
+      env:
+        A: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AA: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: exper
       run : |
