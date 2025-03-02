@@ -46,3 +46,8 @@ jobs:
         aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
         aws-region: eu-north-1
         audience: sts.amazonaws.com
+        
+    - name: exper
+      run : |
+        docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
+        docker push 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
