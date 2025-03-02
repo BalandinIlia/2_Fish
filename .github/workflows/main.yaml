@@ -34,10 +34,6 @@ jobs:
       run: | 
           docker push ilia008/project_interface
 
-    - name: exper
-      run : |
-          aws --version
-
     - name: AWS Login
       uses: aws-actions/configure-aws-credentials@v1
       with:
@@ -51,7 +47,7 @@ jobs:
       run: |
         aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 314146339425.dkr.ecr.eu-north-1.amazonaws.com
         
-    - name: exper
+    - name: Push Docker Image
       run : |
         docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
         docker push 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
