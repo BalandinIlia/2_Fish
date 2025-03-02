@@ -46,6 +46,10 @@ jobs:
         aws-session-token: IQoJb3JpZ2luX2VjEIX//////////wEaCmV1LW5vcnRoLTEiSDBGAiEAgnNyOmt6CPiKT517zguTWLCaNYKKSOUMadAL5y81aykCIQDJJONCab4GlDwLsyGLsNVOCi5aOiwv2ijlUYqsk5NwNirvAgi+//////////8BEAAaDDMxNDE0NjMzOTQyNSIMqm9nJo7NKUagrFITKsMCsT3oAM/yCZDkZt8L63ANDM3aBTQtr4RRqjt+6n3rzcLDaw9z2Z8otdwAxyGZJKtIXY8Nr7XOU3z4JMlp3rkODEqGLl7MqZkg8QX928yV9on91rxI5exgkZxuf0F3Yi+0/2dtypRa6JPGStKUkqV+BD6oL7fLKwtmUHSQqsRcCCgojjRyp59S3RKezG4XCwGUZyuvYyS121tQEp2LZQ9X4EGiPoMhD2womMdU8Fm2ZmBAp8f12sJDCcj+OlDlUDWDCb7mj/gmA/brqcr5SrpfNtKxbQsMUjDwxjLyexzRwdWPY/8/H5JAS96xxj42bh+Kc7H6gkzXXe/uWiQ1aKMaH2QboCyA5LiJoo8+wtFR3mCf1dkVcQWwpkwhX+HUgfkzirKOlansugZCuK+fDHBL/Ft9GXa/Hit5VyulESlBNszucKMw+LGRvgY6pgE6Gl9Fg/GiQ5Rqw0eOiVnv/K0WvwF+4aurbDfcauwskRjr8tu9gh83/aQTPryAqfDGoppqdL20qjCOsViHPZ8up/c/dfv1dsciWga+6NvumK2LFHo9/rbIIrgCRbk8uibNzbBotGwrrxH512J88pBPqNyt3twxRC03i52Eezkfm+ZE4p4qFH4pwVFHjzOfvy9AMLwkXoAKd+InAuhBghjq1GZrISoJ
         aws-region: eu-north-1
         audience: sts.amazonaws.com
+
+    - name: Login to ECR
+      run: |
+        aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 314146339425.dkr.ecr.eu-north-1.amazonaws.com
         
     - name: exper
       run : |
