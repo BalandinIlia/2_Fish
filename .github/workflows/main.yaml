@@ -53,5 +53,5 @@ jobs:
         
     - name: exper
       run : |
-        docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
-        docker push 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface
+        docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface/interface
+        docker push 314146339425.dkr.ecr.eu-north-1.amazonaws.com/project/web_interface/interface
