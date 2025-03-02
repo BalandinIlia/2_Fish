@@ -44,7 +44,6 @@ jobs:
         aws-access-key-id: ASIAUSJEUXJQZAJLXGUN
         aws-secret-access-key: w9M+ZwTE431z+QL1UUzLhQ+YV1zFnlq5Vn7ikp+A
         aws-region: eu-north-1
-        audience: sts.amazonaws.com
 
     - name: Login to ECR
       run: |
