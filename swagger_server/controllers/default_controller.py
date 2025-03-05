@@ -8,7 +8,7 @@ i = 0
 def calc():
     global i
     i = i + 1
-    return {"status": "OK"}, 500
+    return {"status": "OK"}, 200
 
 def healthcheck():  # noqa: E501
     """healthcheck
