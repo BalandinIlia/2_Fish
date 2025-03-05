@@ -54,7 +54,7 @@ jobs:
 
     - name: Remove
       run: |
-        TASKS=$(aws ecs list-tasks --cluster BigTuna --family module-service)
+        TASKS=$(aws ecs list-tasks --cluster BigTuna --family module-service --query "taskArns[]" --output text)
 
         for TASK in $TASKS; do
           aws ecs stop-task --cluster BigTuna --task $TASK --reason "Stopping all tasks for cleanup"
