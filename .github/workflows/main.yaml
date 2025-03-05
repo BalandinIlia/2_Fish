@@ -58,7 +58,6 @@ jobs:
 
         for TASK in $TASKS; do
           aws ecs stop-task --cluster BigTuna --task $TASK --reason "Stopping all tasks for cleanup"
-        fi
         done
 
     - name: Update ECS
