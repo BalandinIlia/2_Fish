@@ -52,6 +52,15 @@ jobs:
         docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
         docker push 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
 
+    - name: Remove
+      run: |
+        TASKS=$(aws ecs list-tasks --cluster BigTuna --family module-service)
+
+        for TASK in $TASKS; do
+          aws ecs stop-task --cluster BigTuna --task $TASK --reason "Stopping all tasks for cleanup"
+        fi
+        done
+
     - name: Update ECS
       run: |
         aws ecs update-service --cluster BigTuna --service module-service --force-new-deployment
