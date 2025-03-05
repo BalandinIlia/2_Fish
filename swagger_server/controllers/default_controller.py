@@ -8,10 +8,7 @@ i = 0
 def calc():
     global i
     i = i + 1
-    if(i%2 == 0):
-        return {"status": "OK"}, 200
-    else:
-        return {"status": "NOT_OK"}, 500
+    return {"status": "OK"}, 200
 
 def healthcheck():  # noqa: E501
     """healthcheck
