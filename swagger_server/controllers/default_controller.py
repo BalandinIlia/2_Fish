@@ -16,8 +16,8 @@ i = 0
 def calc():
     global i
     i = i + 1
-    s3.put_object(Bucket = "arn:aws:s3:::temporalal", Key = "python_message.txt", Body = "Hello, S3!".encode("utf-8"))
-    return {"status": "OK"}, 200
+    response = s3.put_object(Bucket = "arn:aws:s3:::temporalal", Key = "python_message.txt", Body = "Hello, S3!".encode("utf-8"))
+    return {"status": print(response)}, 200
 
 def healthcheck():  # noqa: E501
     """healthcheck
