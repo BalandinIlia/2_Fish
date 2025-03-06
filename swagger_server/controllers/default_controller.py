@@ -7,7 +7,7 @@ s3 = boto3.client("s3")
 
 # Specify your bucket and object
 bucket_name = "temporalal"
-object_key = "path/to/python_message.txt"
+object_key = "python_message.txt"
 
 from swagger_server import util
 
