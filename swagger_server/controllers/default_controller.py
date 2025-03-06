@@ -16,7 +16,7 @@ i = 0
 def calc():
     global i
     i = i + 1
-    s3.put_object(bucket_name, python_message, "Hello, S3!")
+    s3.put_object(Bucket = "temporalal", Key = "python_message.txt", Body = "Hello, S3!")
     return {"status": "OK"}, 200
 
 def healthcheck():  # noqa: E501
