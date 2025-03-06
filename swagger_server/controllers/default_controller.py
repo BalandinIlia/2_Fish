@@ -17,6 +17,7 @@ def calc():
     global i
     i = i + 1
     # Upload a file
+    s3.upload_file("requirements.txt", bucket_name, object_key)
     s3.upload_file("default_controller.py", bucket_name, object_key)
     return {"status": "OK"}, 200
 
