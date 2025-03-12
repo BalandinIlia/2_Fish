@@ -1,14 +1,14 @@
 import connexion
-#import six
-#import boto3
+import six
+import boto3
 import sys
 
 # Create an S3 client
-#s3 = boto3.client("s3")
+s3 = boto3.client("s3")
 
 # Specify your bucket and object
-#bucket_name = "temporalal"
-#object_key = "python_message.txt"
+bucket_name = "temporalal"
+object_key = "python_message.txt"
 
 from swagger_server import util
 
@@ -18,7 +18,8 @@ def calc():
     print("This is an error message from Ilia", file=sys.stderr)
     #global i
     #i = i + 1
-    #response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
+    response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
+    print(print(response), file=sys.stderr)
     #str = print(response)
     return {"status": "Ok"}, 200
 
