@@ -16,7 +16,7 @@ i = 0
 def calc():
     global i
     i = i + 1
-    response = s3.put_object(Bucket = "bucket_name", Key = "python_message.txt", Body = "Hello, S3!".encode("utf-8"))
+    response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
     str = print(response)
     return {"status": str}, 200
 
