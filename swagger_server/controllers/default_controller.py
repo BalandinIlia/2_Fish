@@ -1,5 +1,5 @@
 import connexion
-import six
+#import six
 #import boto3
 #import sys
 
