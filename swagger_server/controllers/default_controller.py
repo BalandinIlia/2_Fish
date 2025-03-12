@@ -15,7 +15,7 @@ from swagger_server import util
 i = 0
 
 def calc():
-    print("This is an error message", file=sys.stderr)
+    print("This is an error message from Ilia", file=sys.stderr)
     #global i
     #i = i + 1
     #response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
