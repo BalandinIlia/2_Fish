@@ -1,7 +1,7 @@
 import connexion
 #import six
 #import boto3
-#import sys
+import sys
 
 # Create an S3 client
 #s3 = boto3.client("s3")
@@ -15,7 +15,7 @@ from swagger_server import util
 i = 0
 
 def calc():
-    #print("This is an error message", file=sys.stderr)
+    print("This is an error message", file=sys.stderr)
     #global i
     #i = i + 1
     #response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
