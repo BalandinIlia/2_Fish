@@ -20,7 +20,7 @@ def calc():
     #i = i + 1
     #response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
     #str = print(response)
-    return {"status": str}, 200
+    return {"status": "Ok"}, 200
 
 def healthcheck():  # noqa: E501
     """healthcheck
