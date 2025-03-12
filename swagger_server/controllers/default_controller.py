@@ -1,6 +1,6 @@
 import connexion
 import six
-import boto3
+#import boto3
 #import sys
 
 # Create an S3 client
