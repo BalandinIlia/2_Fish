@@ -9,7 +9,7 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.0
 servers:
-- url: https://virtserver.swaggerhub.com/uva-d89/Project_Web_Interface/1.0.0
+- url: https://virtserver.swaggerhub.com/module-service/notebooks
   description: SwaggerHub API Auto Mocking
 tags:
 - name: admins
