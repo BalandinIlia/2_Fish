@@ -20,5 +20,6 @@ def healthcheck():
     return {"status": "healthy"}, 200
 
 def get_modules(organization_id: str, notebook_id: str):
-    print(f"Logging: Processing get request for organization: {organization_id} and notebook: {notebook_id}.", file=sys.stderr)
-    return {"status": "modules returned"}, 200
+    print(f"Processing get request for organization: {organization_id} and notebook: {notebook_id}.")
+    modules = ["First module", f"Organization id: {organization_id}", f"Notebook id:{notebook_id}", "Fourth module"]
+    return jsonify({"modules": modules}), 200
