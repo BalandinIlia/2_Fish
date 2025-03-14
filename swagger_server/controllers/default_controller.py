@@ -8,14 +8,7 @@ from swagger_server import util
 from flask import jsonify
 
 def healthcheck():
-    s3 = boto3.client("s3")
-    bucket_name = "temporalal"
-    object_key = "python_message.txt"
-    
     print("Logging: Performing standard healthcheck", file=sys.stderr)
-    response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
-    print("Logging: results of touching experimental bucket:", file=sys.stderr)
-    print(print(response), file=sys.stderr)
     return {"status": "healthy"}, 200
 
 def buck_name():
