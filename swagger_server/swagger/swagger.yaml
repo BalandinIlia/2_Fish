@@ -49,8 +49,19 @@ paths:
       responses:
         "200":
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Modules"
         "500":
           description: Internal Server Error
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
-  schemas: {}
+  schemas:
+    Modules:
+      type: object
+      properties:
+        modules:
+          type: array
+          items:
+            type: string
