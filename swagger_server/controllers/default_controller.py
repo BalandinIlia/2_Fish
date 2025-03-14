@@ -1,26 +1,45 @@
+import os
 import connexion
 import six
 import boto3
 import sys
 
-# Create an S3 client
-s3 = boto3.client("s3")
-
-# Specify your bucket and object
-bucket_name = "temporalal"
-object_key = "python_message.txt"
-
 from swagger_server import util
 from flask import jsonify
 
 def healthcheck():
+    s3 = boto3.client("s3")
+    bucket_name = "temporalal"
+    object_key = "python_message.txt"
+    
     print("Logging: Performing standard healthcheck", file=sys.stderr)
     response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
     print("Logging: results of touching experimental bucket:", file=sys.stderr)
     print(print(response), file=sys.stderr)
     return {"status": "healthy"}, 200
 
+def buck_name():
+    print(f"Logging: request bucket name started", file=sys.stderr)
+    name = os.getenv('S3_BUCKET_NAME')
+    print(f"Logging: Requested bucket name: {name}.", file=sys.stderr)
+    return name
+
+def list_files_with_prefix(bucket_name, prefix):
+    print(f"Logging: Searching in bucket {bucket_name} for files with prefix {prefix}", file=sys.stderr)
+    s3 = boto3.client('s3')
+    paginator = s3.get_paginator('list_objects_v2')
+
+    all_files = []
+
+    for page in paginator.paginate(Bucket=bucket_name, Prefix=prefix):
+        if 'Contents' in page:
+            for obj in page['Contents']:
+                all_files.append(obj['Key'])
+
+    print(f"Logging: Found files: {all_files}", file=sys.stderr)
+    return all_files
+
 def get_modules(organization_id: str, notebook_id: str):
-    print(f"Processing get request for organization: {organization_id} and notebook: {notebook_id}.")
-    modules = ["First module", f"Organization id: {organization_id}", f"Notebook id:{notebook_id}", "Fourth module"]
+    print(f"Logging: Processing get request for organization: {organization_id} and notebook: {notebook_id}.", file=sys.stderr)
+    modules = list_files_with_prefix(buck_name(), organization_id + '/' + notebook_id)
     return jsonify({"modules": modules}), 200
