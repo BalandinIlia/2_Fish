@@ -29,6 +29,28 @@ paths:
         "500":
           description: Internal Server Error
       x-openapi-router-controller: swagger_server.controllers.default_controller
+  /organizations/{organization_id}/notebooks/{notebook_id}/modules:
+    get:
+      tags: []
+      summary: get list of modules
+      description: get list of modules for given organization {organization_id} and given notebook {notebook_id}
+      operationId: get_modules
+      parameters:
+        - name: organization_id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: notebook_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas: {}
-
