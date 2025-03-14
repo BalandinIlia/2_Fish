@@ -11,6 +11,7 @@ bucket_name = "temporalal"
 object_key = "python_message.txt"
 
 from swagger_server import util
+from flask import jsonify
 
 def healthcheck():
     print("Logging: Performing standard healthcheck", file=sys.stderr)
