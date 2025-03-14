@@ -12,23 +12,13 @@ object_key = "python_message.txt"
 
 from swagger_server import util
 
-i = 0
-
-def calc():
-    print("This is an error message from Ilia", file=sys.stderr)
-    #global i
-    #i = i + 1
+def healthcheck():
+    print("Logging: Performing standard healthcheck", file=sys.stderr)
     response = s3.put_object(Bucket = bucket_name, Key = object_key, Body = "Hello, S3!".encode("utf-8"))
+    print("Logging: results of touching experimental bucket:", file=sys.stderr)
     print(print(response), file=sys.stderr)
-    #str = print(response)
-    return {"status": "Ok"}, 200
+    return {"status": "healthy"}, 200
 
-def healthcheck():  # noqa: E501
-    """healthcheck
-
-    Standard server healthcheck # noqa: E501
-
-
-    :rtype: None
-    """
-    return calc()
+def get_modules(organization_id: str, notebook_id: str):
+    print(f"Logging: Processing get request for organization: {organization_id} and notebook: {notebook_id}.", file=sys.stderr)
+    return {"status": "modules returned"}, 200
