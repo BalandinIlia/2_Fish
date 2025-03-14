@@ -17,7 +17,7 @@ class TestDefaultController(BaseTestCase):
         healthcheck
         """
         response = self.client.open(
-            '/module-service/notebooks/healthcheck',
+            '/module-service/healthcheck',
             method='GET')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
