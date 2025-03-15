@@ -35,4 +35,7 @@ def list_files_with_prefix(bucket_name, prefix):
 def get_modules(organization_id: str, notebook_id: str):
     print(f"Logging: Processing get request for organization: {organization_id} and notebook: {notebook_id}.", file=sys.stderr)
     modules = list_files_with_prefix(buck_name(), organization_id + '/' + notebook_id)
-    return jsonify({"modules": modules}), 200
+    print(f"Logging: Found modules: {modules}.", file=sys.stderr)
+    sorted_modules = sorted(modules)
+    print(f"Logging: Found modules after sorting: {sorted_modules}.", file=sys.stderr)
+    return jsonify({"modules": sorted_modules}), 200
