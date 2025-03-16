@@ -38,4 +38,7 @@ def get_modules(organization_id: str, notebook_id: str):
     print(f"Logging: Found modules: {modules}.", file=sys.stderr)
     sorted_modules = sorted(modules)
     print(f"Logging: Found modules after sorting: {sorted_modules}.", file=sys.stderr)
-    return jsonify({"modules": sorted_modules}), 200
+    if len(sorted_modules) == 0:
+        return {"status": "Not Found"}, 404
+    else:
+        return jsonify({"modules": sorted_modules}), 200
