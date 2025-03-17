@@ -52,7 +52,8 @@ jobs:
     - name: Login to Amazon ECR
       uses: aws-actions/amazon-ecr-login@v1
       with:
-        region: eu-central-1
+        mask-password: true
+        skip-logout: false
         
     - name: Push Docker Image
       run : |
