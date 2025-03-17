@@ -11,7 +11,7 @@ env:
 
 
 jobs:
-  build:
+  build_and_push:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -60,10 +60,23 @@ jobs:
         docker tag ilia008/project_interface 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
         docker push 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
 
-    - name: Remove
+  update_ECS:
+    needs: build_and_push
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    
+    steps:
+    - name: AWS Configure Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: eu-central-1
+        role-to-assume: arn:aws:iam::314146339425:role/UpdateECSTask
+        role-session-name: UpdateECSTask
+
+    - name: Stop All Running Tasks
       run: |
         TASKS=$(aws ecs list-tasks --cluster BigTuna --family module-service --query "taskArns[]" --output text)
-
         for TASK in $TASKS; do
           aws ecs stop-task --cluster BigTuna --task $TASK --reason "Stopping all tasks for cleanup"
         done
