@@ -3,7 +3,7 @@ name: Build Test and push
 on:
   push:
     branches:
-      - main
+      - master
 
 env:
   IMAGE_NAME: project_interface
