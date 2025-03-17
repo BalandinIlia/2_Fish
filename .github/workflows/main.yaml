@@ -1,5 +1,10 @@
 name: Build Test and push
-on: [push]
+
+on:
+  push:
+    branches:
+      - main
+
 env:
   IMAGE_NAME: project_interface
   REPO_NAME: ilia008
@@ -34,14 +39,12 @@ jobs:
       run: | 
           docker push ilia008/project_interface
 
-    - name: AWS Login
-      uses: aws-actions/configure-aws-credentials@v1
+    - name: AWS Configure Credentials
+      uses: aws-actions/configure-aws-credentials@v4
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID_TO_PROJ }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_TO_PROJ }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN_TO_PROJ }}
         aws-region: eu-central-1
-        audience: sts.amazonaws.com
+        role-to-assume: arn:aws:iam::314146339425:role/PushDockerImageECR
+        role-session-name: PushDockerImageECR
 
     - name: Login to ECR
       run: |
