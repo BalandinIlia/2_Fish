@@ -17,18 +17,18 @@ jobs:
     
     - name: Build docker
       run: |
-        docker build . --platform linux/amd64 -t ${{secret.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
+        docker build . --platform linux/amd64 -t ${{secrets.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
 
     - name: run docker
       run: |
-        docker run -d -p 8080:8080 ${{secret.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface && \
+        docker run -d -p 8080:8080 ${{secrets.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface && \
           docker ps && sleep 5
 
     - name: AWS Configure Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-region: eu-central-1
-        role-to-assume: arn:aws:iam::${{secret.AWS_NUM}}:role/PushDockerImageECR
+        role-to-assume: arn:aws:iam::${{secrets.AWS_NUM}}:role/PushDockerImageECR
         role-session-name: PushDockerImageECR
 
     - name: Login to Amazon ECR
@@ -39,7 +39,7 @@ jobs:
         
     - name: Push Docker Image
       run : |
-        docker push ${{secret.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
+        docker push ${{secrets.AWS_NUM}}.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
 
   update_ECS:
     needs: build_and_push
@@ -52,7 +52,7 @@ jobs:
       uses: aws-actions/configure-aws-credentials@v4
       with:
         aws-region: eu-central-1
-        role-to-assume: arn:aws:iam::${{secret.AWS_NUM}}:role/UpdateECSTask
+        role-to-assume: arn:aws:iam::${{secrets.AWS_NUM}}:role/UpdateECSTask
         role-session-name: UpdateECSTask
 
     - name: Stop All Running Tasks
