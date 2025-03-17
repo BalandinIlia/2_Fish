@@ -17,10 +17,11 @@ jobs:
     
     - name: Build docker
       run: |
-        docker build . -t tag1
+        docker build . --platform linux/amd64 -t 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
+
     - name: run docker
       run: |
-        docker run -d -p 8080:8080 tag1 && \
+        docker run -d -p 8080:8080 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface && \
           docker ps && sleep 5
 
     - name: AWS Configure Credentials
@@ -38,7 +39,6 @@ jobs:
         
     - name: Push Docker Image
       run : |
-        docker tag tag1 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
         docker push 314146339425.dkr.ecr.eu-central-1.amazonaws.com/project/web_interface
 
   update_ECS:
