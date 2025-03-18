@@ -74,4 +74,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-      x-bearerInfoFunc: utils.verify_cognito_jwt
+      x-bearerInfoFunc: swagger_server.utils.verify_cognito_jwt
