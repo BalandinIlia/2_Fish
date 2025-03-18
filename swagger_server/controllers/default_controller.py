@@ -1,10 +1,9 @@
 import os
-import connexion
-import six
 import boto3
 import sys
 
-from swagger_server import util
+from werkzeug.exceptions import NotFound
+
 from flask import jsonify
 
 def healthcheck():
@@ -32,7 +31,10 @@ def list_files_with_prefix(bucket_name, prefix):
     print(f"Logging: Found files: {all_files}", file=sys.stderr)
     return all_files
 
-def get_modules(organization_id: str, notebook_id: str):
+def get_modules(organization_id: str, notebook_id: str, user, token_info):
+    user_organizations = token_info['cognito:groups']
+    if organization_id not in user_organizations:
+        raise NotFound
     print(f"Logging: Processing get request for organization: {organization_id} and notebook: {notebook_id}.", file=sys.stderr)
     modules = list_files_with_prefix(buck_name(), organization_id + '/' + notebook_id)
     print(f"Logging: Found modules: {modules}.", file=sys.stderr)

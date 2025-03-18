@@ -57,6 +57,8 @@ paths:
           description: Not Found
         "500":
           description: Internal Server Error
+      security:
+        - jwt: [ 'secret' ]
       x-openapi-router-controller: swagger_server.controllers.default_controller
 components:
   schemas:
@@ -67,3 +69,9 @@ components:
           type: array
           items:
             type: string
+  securitySchemes:
+    jwt:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: utils.verify_cognito_jwt
