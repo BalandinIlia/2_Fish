@@ -4,5 +4,6 @@ setuptools == 75.8.0
 swagger-ui-bundle == 0.0.9
 boto3==1.37.11
 flask==2.2.5
-pyjwt
-requests
+pyjwt==2.10.1
+requests==2.32.3
+cryptography==44.0.2
